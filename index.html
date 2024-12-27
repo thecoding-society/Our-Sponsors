@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Image Slider with Twinkling Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: #000; /* Dark background for twinkling effect */
+        }
+
+        /* Twinkling Stars Background */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1; /* Place stars behind everything */
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background: #fff; /* Optional: Adds a subtle background to slider */
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Twinkling Background -->
+    <div class="stars"></div>
+
+    <!-- Image Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+            <img src="assets/logitech.jpg" alt="Image 1">
+            <img src="assets/devfolio.jpg" alt="Image 2">
+            <img src="assets/polygon.jpg" alt="Image 3">
+            <img src="assets/aptos.jpg" alt="Image 4">
+            <img src="assets/eth.jpg" alt="Image 5">
+            <img src="assets/github.jpg" alt="Image 6">
+            <img src="assets/loftlabs.jpg" alt="Image 6">
+            <img src="assets/devdock.jpg" alt="Image 6">
+            <img src="assets/gfg.png" alt="Image 6">
+        </div>
+    </div>
+
+    <script>
+        // Twinkling Stars
+        const starCount = 200;
+        const starsContainer = document.querySelector('.stars');
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDuration = `${1.5 + Math.random() * 1.5}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Slider Functionality
+        const slider = document.querySelector('.slider');
+        const images = document.querySelectorAll('.slider img');
+        const totalImages = images.length;
+
+        let counter = 0;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(${-counter * 100}%)`;
+        }
+
+        // Auto-slide every 3 seconds
+        setInterval(() => {
+            counter++;
+            if (counter === totalImages) {
+                counter = 0;
+            }
+            updateSlider();
+        }, 3000);
+    </script>
+</body>
+</html>
